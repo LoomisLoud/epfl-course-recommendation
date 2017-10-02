@@ -1,1 +1,1 @@
-# course-recommendation
+# EPFL Courses recommendation system
