@@ -99,3 +99,9 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# Removing the personnal credentials for msyql
+credentials.ini
+
+# Data folder
+data/
