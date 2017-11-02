@@ -105,3 +105,6 @@ credentials.ini
 
 # Data folder
 data/
+
+# Other git
+CDAE/
