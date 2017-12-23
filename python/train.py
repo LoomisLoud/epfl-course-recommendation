@@ -1,6 +1,7 @@
+from enrolment_matrix import UNITS, load_enrolment_matrix
 from keras.layers import Input, Dense, Embedding, Flatten, Dropout, Activation
 from keras.layers.merge import Add
-from keras.models import Model
+from keras.models import Model, load_model
 from keras.regularizers import l2
 import numpy as np
 
@@ -38,7 +39,11 @@ def create_model(I, U, K, hidden_activation, output_activation, q=0.5, l=0.01):
 
     return Model(inputs=[x_item, x_user], outputs=y)
 
-def train_model(data, dropout=0.998, hidden_layers=27, verbosity=2):
+def train_model(data, dropout=0.998, hidden_layers=27, verbosity=2, save=None):
+    """
+    Trains the model on the specified data, using dropout, the number of
+    hidden layers, and fill save with the unit name
+    """
     training_set, testing_set, users = split_data(data)
     print("train: {}, users: {}".format(training_set.shape, users.shape))
     model = create_model(I=training_set.shape[1], U=len(users)+1, K=hidden_layers,
@@ -48,10 +53,15 @@ def train_model(data, dropout=0.998, hidden_layers=27, verbosity=2):
     model.fit(x=[training_set, users], y=training_set,
               batch_size=128, epochs=2000, verbose=verbosity,
               validation_split=0.20)
-    model.save('../data/cdae_model.hd5')
+    if save:
+        model.save('../data/{}_cdae_model.hd5'.format(UNITS[save]))
     return model
 
 def split_data(data):
+    """
+    Splits the given data (pandas) in a train set, test set and the
+    labels for users
+    """
     testing_set = data.applymap(lambda x: 0)
 
     taken_courses_flat = data.stack().to_frame()
@@ -71,3 +81,18 @@ def split_data(data):
     users = np.array(np.arange(data.shape[0])[np.newaxis].T, dtype=np.int32)
 
     return train_np, test_np, users
+
+def train_all_individual_models(dropout=0.998, hidden_layers=27, verbosity=2):
+    """
+    The aim of this method is to simply train all the models in order
+    to store them on disk afterwards for dynamic loading.
+    """
+    for i, unit in enumerate(UNITS):
+        print("Training the model for {} ({}/{})".format(unit, i+1, len(UNITS)))
+        train_model(load_enrolment_matrix(unit, from_pickle=True), dropout, hidden_layers, verbosity, save=unit)
+
+def load_trained_model(unit):
+    """
+    Loads the trained model for the given unit name
+    """
+    return load_model("../data/{}_cdae_model.hd5".format(UNITS[unit]))

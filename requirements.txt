@@ -1,0 +1,6 @@
+mysql-connector==2.1.6
+numpy
+pandas
+keras
+tensorflow
+h5py
