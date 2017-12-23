@@ -1,6 +1,6 @@
 # EPFL Courses recommendation system
 
-## Install:
+## Install
   To install the dependencies, download the data and train the models, install python3.6 and run:
   ```shell
   pip3.6 install -r requirements.txt
@@ -12,7 +12,7 @@
   To recommend a list of courses for a user, run `recommend_course.predict(unit, courses)`, unit being the unit the student is in, and courses being the list of courses he already took in masters.
 
 ## Research
-  You can find the research in the Jupyter Notebooks provided, the models tried in the Exploration.ipynb notebook and the best model found in the Recommender.ipynb notebook.
+  You can find the research in the Jupyter Notebooks provided, the models tried in the Exploration.ipynb notebook and the best model found in the Recommender.ipynb notebook. Feel free to read the technical report to learn more about the research !
 
 ## Model
   There is one trained model per unit of the school, each trained on the subset of courses in the unit. It's composed of three parts, all the same for each unit, so we won't distinguish after this point.
