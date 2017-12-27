@@ -1,4 +1,4 @@
-from enrolment_matrix import UNITS, load_enrolment_matrix
+from enrolment_matrix import UNITS, load_enrolment_matrix, DATA_FOLDER
 from keras.layers import Input, Dense, Embedding, Flatten, Dropout, Activation
 from keras.layers.merge import Add
 from keras.models import Model, load_model

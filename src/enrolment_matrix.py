@@ -4,6 +4,8 @@ import numpy as np
 import pandas as pd
 
 DATA_FOLDER = "data/"
+CONFIG_FOLDER = "config/"
+
 # Number of minimum courses a student has to have
 # taken to be considered in the recommender system
 MIN_COURSES_BY_STUDENT = 10
@@ -143,7 +145,7 @@ def init_connection():
     Read the confidential token.
     """
     credentials = configparser.ConfigParser()
-    credentials.read('../config/credentials.ini')
+    credentials.read(CONFIG_FOLDER + 'credentials.ini')
     db_connection = sql.connect(host=credentials.get('mysql', 'url'),
                                 database='semester_project_romain',
                                 user=credentials.get('mysql', 'username'),
