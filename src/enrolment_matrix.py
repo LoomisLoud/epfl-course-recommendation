@@ -3,6 +3,7 @@ import mysql.connector as sql
 import numpy as np
 import pandas as pd
 
+DATA_FOLDER = "data/"
 # Number of minimum courses a student has to have
 # taken to be considered in the recommender system
 MIN_COURSES_BY_STUDENT = 10
@@ -155,7 +156,7 @@ def load_db_data(unit_name='Informatique', sub_map_from_pickle=False):
     Loads data from the database, returns only the subject mappings if specified
     """
     if sub_map_from_pickle:
-        return pd.read_pickle('../data/{}_subject_mapping.pkl'.format(UNITS[unit_name]))
+        return pd.read_pickle(DATA_FOLDER + '{}_subject_mapping.pkl'.format(UNITS[unit_name]))
     db_connection = init_connection()
     all_df = pd.read_sql(ALL_INFO.format(unit_name), con=db_connection)
     # Removing the useless courses, and SHS ones
@@ -164,7 +165,7 @@ def load_db_data(unit_name='Informatique', sub_map_from_pickle=False):
     # Mapping of subject ids to subject names
     subject_mapping = all_df[['SubjectID', 'SubjectName']].drop_duplicates()
     # Saving the subject mappings to a pkl
-    subject_mapping.to_pickle('../data/{}_subject_mapping.pkl'.format(UNITS[unit_name]))
+    subject_mapping.to_pickle(DATA_FOLDER + '{}_subject_mapping.pkl'.format(UNITS[unit_name]))
     return all_df, subject_mapping
 
 
@@ -175,7 +176,7 @@ def load_enrolment_matrix(unit_name='Informatique', from_pickle=False, verbose=F
     if verbose:
         print("Loading the {} enrolment matrix".format(unit_name))
     if from_pickle:
-        return pd.read_pickle('../data/{}_enrolment_matrix.pkl'.format(UNITS[unit_name]))
+        return pd.read_pickle(DATA_FOLDER + '{}_enrolment_matrix.pkl'.format(UNITS[unit_name]))
 
     all_df, _ = load_db_data(unit_name)
     courses_matrix = all_df[['PersonID', 'SubjectName']]
@@ -204,7 +205,7 @@ def store_enrolment_matrix(unit_name='Informatique', verbose=False):
     """
     Stores the enrolment matrix
     """
-    load_enrolment_matrix(unit_name, verbose=verbose).to_pickle("../data/{}_enrolment_matrix.pkl".format(UNITS[unit_name]))
+    load_enrolment_matrix(unit_name, verbose=verbose).to_pickle(DATA_FOLDER + "{}_enrolment_matrix.pkl".format(UNITS[unit_name]))
     if verbose:
         print("Stored {} enrolment matrix".format(unit_name))
 
@@ -216,7 +217,7 @@ def get_last_year_registrations(unit_name='Informatique', from_pickle=False, ver
     if verbose:
         print("Loading the {} last year registrations".format(unit_name))
     if from_pickle:
-        return pd.read_pickle('../data/{}_last_year_registrations.pkl'.format(UNITS[unit_name]))
+        return pd.read_pickle(DATA_FOLDER + '{}_last_year_registrations.pkl'.format(UNITS[unit_name]))
     all_df, _ = load_db_data(unit_name)
     registrations_df = all_df.set_index(['SubjectName', 'YearName'])
     all_df_registrations = registrations_df.groupby(['SubjectName', 'YearName']).size()
@@ -236,5 +237,5 @@ def get_last_year_registrations(unit_name='Informatique', from_pickle=False, ver
 
     # Latest data registrations
     registrations_final = registrations.xs('2015-2016', level='YearName')
-    registrations_final.to_pickle('../data/{}_last_year_registrations.pkl'.format(UNITS[unit_name]))
+    registrations_final.to_pickle(DATA_FOLDER + '{}_last_year_registrations.pkl'.format(UNITS[unit_name]))
     return registrations_final

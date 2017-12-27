@@ -54,7 +54,7 @@ def train_model(data, dropout=0.998, hidden_layers=27, verbosity=2, save=None):
               batch_size=128, epochs=2000, verbose=verbosity,
               validation_split=0.20)
     if save:
-        model.save('../data/{}_cdae_model.hd5'.format(UNITS[save]))
+        model.save(DATA_FOLDER + '{}_cdae_model.hd5'.format(UNITS[save]))
     return model
 
 def split_data(data):
@@ -95,4 +95,4 @@ def load_trained_model(unit):
     """
     Loads the trained model for the given unit name
     """
-    return load_model("../data/{}_cdae_model.hd5".format(UNITS[unit]))
+    return load_model(DATA_FOLDER + "{}_cdae_model.hd5".format(UNITS[unit]))

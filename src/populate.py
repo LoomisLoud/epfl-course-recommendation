@@ -1,4 +1,4 @@
-from enrolment_matrix import UNITS, store_enrolment_matrix, get_last_year_registrations
+from enrolment_matrix import UNITS, store_enrolment_matrix, get_last_year_registrations, DATA_FOLDER
 from co_enrolment_matrix import store_co_enrolment_matrix
 from train import train_all_individual_models
 import os.path
@@ -24,7 +24,7 @@ def store_co_enrolment_matrices(verbose=False):
     if not verbose:
         print("Storing co enrolment matrices: 0.00%", end="\r")
     for i, unit in enumerate(UNITS.keys()):
-        if not os.path.isfile('../data/{}_enrolment_matrix.pkl'.format(UNITS[unit])):
+        if not os.path.isfile(DATA_FOLDER + '{}_enrolment_matrix.pkl'.format(UNITS[unit])):
             print("\nMissing the {} enrolment_matrix pickle, loading it\n".format(unit))
             store_enrolment_matrix(unit, verbose=verbose)
         store_co_enrolment_matrix(unit, verbose=verbose)

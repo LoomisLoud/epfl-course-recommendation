@@ -1,4 +1,4 @@
-from enrolment_matrix import load_enrolment_matrix, UNITS
+from enrolment_matrix import load_enrolment_matrix, UNITS, DATA_FOLDER
 import pandas as pd
 
 def load_co_enrolment_matrix(unit_name="Informatique", from_pickle=False, verbose=False):
@@ -8,7 +8,7 @@ def load_co_enrolment_matrix(unit_name="Informatique", from_pickle=False, verbos
     if verbose:
         print("Loading the {} co enrolment matrix".format(unit_name))
     if from_pickle:
-        return pd.read_pickle('../data/{}_co_enrolment_matrix.pkl'.format(UNITS[unit_name]))
+        return pd.read_pickle(DATA_FOLDER + '{}_co_enrolment_matrix.pkl'.format(UNITS[unit_name]))
 
     courses_matrix = load_enrolment_matrix(unit_name, from_pickle=True, verbose=verbose)
     co_enrolments = pd.DataFrame(data=0, columns=courses_matrix.columns, index=courses_matrix.columns)
@@ -28,7 +28,7 @@ def store_co_enrolment_matrix(unit_name="Informatique", verbose=False):
     """
     Stores the co-enrolment to disk
     """
-    load_co_enrolment_matrix(unit_name, verbose=verbose).to_pickle('../data/{}_co_enrolment_matrix.pkl'.format(UNITS[unit_name]))
+    load_co_enrolment_matrix(unit_name, verbose=verbose).to_pickle(DATA_FOLDER + '{}_co_enrolment_matrix.pkl'.format(UNITS[unit_name]))
     if verbose:
         print("Stored the {} co enrolment matrix".format(unit_name))
 

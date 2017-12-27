@@ -1,7 +1,7 @@
 from co_enrolment_matrix import training_weight_coenrolments
 from grade_correlations import training_weight_grade_corr
 from keras import models
-from enrolment_matrix import load_enrolment_matrix, UNITS, get_last_year_registrations
+from enrolment_matrix import load_enrolment_matrix, UNITS, get_last_year_registrations, DATA_FOLDER
 import numpy as np
 import pandas as pd
 
@@ -26,7 +26,7 @@ def predict(unit="Informatique", courses=COURSES):
     my_binary_courses = my_courses.as_matrix()
     binary_courses_format = np.array([[1]], dtype=np.int32)
 
-    model = models.load_model('../data/{}_cdae_model.hd5'.format(UNITS[unit]))
+    model = models.load_model(DATA_FOLDER + '{}_cdae_model.hd5'.format(UNITS[unit]))
     prediction = model.predict(x=[my_binary_courses, binary_courses_format])
     prediction = np.array([ np.array(training_weight_coenrolments(i, unit)) * np.array(training_weight_grade_corr(i, unit)) * np.array(nn_weights) for i, nn_weights in enumerate(prediction) ])
     prediction = np.argsort(prediction)

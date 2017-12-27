@@ -1,4 +1,4 @@
-from enrolment_matrix import load_enrolment_matrix, load_db_data
+from enrolment_matrix import load_enrolment_matrix, load_db_data, DATA_FOLDER
 import numpy as np
 import pandas as pd
 
@@ -24,9 +24,9 @@ def load_grade_corr_matrix(from_pickle=False):
     Returns the matrix of grade correlations inbetween courses
     """
     if from_pickle:
-        return pd.read_pickle('../data/grade_correlation_matrix.pkl')
+        return pd.read_pickle(DATA_FOLDER + 'grade_correlation_matrix.pkl')
     # Retrieve courses correlations
-    grade_corr = pd.read_csv('../data/correlation-subject-pair.csv')
+    grade_corr = pd.read_csv(DATA_FOLDER + 'correlation-subject-pair.csv')
     grade_corr = grade_corr[['sub1', 'sub2', "cor1", "cor2"]]
     grade_corr['cor_mean'] = grade_corr[['cor1', 'cor2']].apply(lambda x: correlation_series_mean(x[0],x[1]), axis=1)
     grade_corr = grade_corr[['sub1', 'sub2', 'cor_mean']]
@@ -56,7 +56,7 @@ def load_grade_corr_matrix(from_pickle=False):
 # Let's transform it into probabilistic
     grade_corr_matrix = grade_corr_matrix / grade_corr_matrix.sum(axis=0)
 
-    grade_corr_matrix.to_pickle('../data/grade_correlation_matrix.pkl')
+    grade_corr_matrix.to_pickle(DATA_FOLDER + 'grade_correlation_matrix.pkl')
     return grade_corr_matrix
 
 def get_grades_corr(course, other_enrolments):
