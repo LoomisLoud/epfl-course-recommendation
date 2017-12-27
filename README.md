@@ -1,15 +1,16 @@
 # EPFL Courses recommendation system
 
 ## Install
-  To install the dependencies, download the data and train the models, install python3.6 and run:
+  To install the dependencies, download the data and train the models, set up the EPFL VPN, install python3.6 and run:
   ```shell
   pip3.6 install -r requirements.txt
-  cd python
   python3.6 init.py
   ```
 
 ## Use
   To recommend a list of courses for a user, run `recommend_course.predict(unit, courses)`, unit being the unit the student is in, and courses being the list of courses he already took in masters.
+  
+  For a graphical usage, run flask on the application.py file: `FLASK_APP=application.py flask run`.
 
 ## Research
   You can find the research in the Jupyter Notebooks provided, the models tried in the Exploration.ipynb notebook and the best model found in the Recommender.ipynb notebook. Feel free to read the technical report to learn more about the research !
