@@ -27,3 +27,5 @@
 ## Credits
 Huge thanks to the scientists who worked on the [Collaborative Denoising Auto-Encoders
 for Top-N Recommender Systems](http://alicezheng.org/papers/wsdm16-cdae.pdf), as well as the [henry0312](https://github.com/henry0312/CDAE) for his quick implementation of the paper.
+
+Thanks also to Francisco Pinto and Kshitij Sharma at the CEDE lab at EPFL for the great help when supervising this project.
