@@ -4,7 +4,7 @@
   To install the dependencies, download the data and train the models, set up the EPFL VPN, install python3.6 and run:
   ```shell
   pip3.6 install -r requirements.txt
-  python3.6 init.py
+  python3.6 src/init.py
   ```
 
 ## Use
@@ -23,3 +23,9 @@
   We multiply the results of all three parts which gives us a confidence score for each course, the higher the better.
 
   Using these, we achieve on the worst case a top-5 success-rate of 70% and best case of 90%
+
+## Credits
+Huge thanks to the scientists who worked on the [Collaborative Denoising Auto-Encoders
+for Top-N Recommender Systems](http://alicezheng.org/papers/wsdm16-cdae.pdf), as well as the [henry0312](https://github.com/henry0312/CDAE) for his quick implementation of the paper.
+
+Thanks also to Francisco Pinto and Kshitij Sharma at the CEDE lab at EPFL for the great help when supervising this project.
