@@ -1,3 +1,7 @@
+"""
+The populate module is used to create different files for each
+unit in the school and use them instead of doing everything online
+"""
 from enrolment_matrix import UNITS, store_enrolment_matrix, get_last_year_registrations, DATA_FOLDER
 from co_enrolment_matrix import store_co_enrolment_matrix
 from train import train_all_individual_models

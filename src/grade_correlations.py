@@ -1,3 +1,7 @@
+"""
+The grade correlation module computes the grade correlation
+inbetween two courses and stores it in a matrix.
+"""
 from enrolment_matrix import load_enrolment_matrix, load_db_data, DATA_FOLDER
 import numpy as np
 import pandas as pd

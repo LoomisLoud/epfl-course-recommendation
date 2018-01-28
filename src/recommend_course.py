@@ -1,3 +1,9 @@
+"""
+The bulk of the recommender system, recommends
+courses from a list of previously taken courses
+or courses that the student knows (s)he will take
+and from the unit of the student.
+"""
 from co_enrolment_matrix import training_weight_coenrolments
 from grade_correlations import training_weight_grade_corr
 from keras import models
@@ -18,6 +24,10 @@ COURSES = [
 USERNAME = "random user"
 
 def predict(unit="Informatique", courses=COURSES):
+    """
+    Recommends a list of courses from the ones you took or
+    plan to take, and from your school unit.
+    """
     courses_matrix = load_enrolment_matrix(unit_name=unit, from_pickle=True)
     my_courses = pd.DataFrame(data=0, columns=courses_matrix.columns, index=[USERNAME])
     my_courses[courses] = 1
@@ -28,7 +38,11 @@ def predict(unit="Informatique", courses=COURSES):
 
     model = models.load_model(DATA_FOLDER + '{}_cdae_model.hd5'.format(UNITS[unit]))
     prediction = model.predict(x=[my_binary_courses, binary_courses_format])
-    prediction = np.array([ np.array(training_weight_coenrolments(i, unit)) * np.array(training_weight_grade_corr(i, unit)) * np.array(nn_weights) for i, nn_weights in enumerate(prediction) ])
+
+    # CDAE + co-enrolment + grade correlations model
+    #prediction = np.array([ np.array(training_weight_coenrolments(i, unit)) * np.array(training_weight_grade_corr(i, unit)) * np.array(nn_weights) for i, nn_weights in enumerate(prediction) ])
+    # CDAE + co-enrolment
+    prediction = np.array([ np.array(training_weight_coenrolments(i, unit)) * np.array(nn_weights) for i, nn_weights in enumerate(prediction) ])
     prediction = np.argsort(prediction)
 
     predicted_courses = [courses_matrix.columns[i] for i in prediction[0]]

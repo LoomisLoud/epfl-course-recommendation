@@ -1,3 +1,7 @@
+"""
+The co-enrolment module computes the co-enrolment inbetween two courses as
+a matrix of courses vs courses.
+"""
 from enrolment_matrix import load_enrolment_matrix, UNITS, DATA_FOLDER
 import pandas as pd
 

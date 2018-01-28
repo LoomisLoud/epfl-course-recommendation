@@ -1,3 +1,7 @@
+"""
+The enrolment module computes the enrolment for each course
+from the database, stores it in a matrix.
+"""
 import configparser
 import mysql.connector as sql
 import numpy as np

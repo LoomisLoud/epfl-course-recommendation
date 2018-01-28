@@ -1,3 +1,7 @@
+"""
+This module can be used to train the models on each unit
+of the school.
+"""
 from enrolment_matrix import UNITS, load_enrolment_matrix, DATA_FOLDER
 from keras.layers import Input, Dense, Embedding, Flatten, Dropout, Activation
 from keras.layers.merge import Add

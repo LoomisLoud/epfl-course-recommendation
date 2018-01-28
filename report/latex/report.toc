@@ -1,0 +1,24 @@
+\contentsline {section}{\numberline {1}Abstract}{2}
+\contentsline {section}{\numberline {2}Introduction}{3}
+\contentsline {subsection}{\numberline {2.1}Motivation}{3}
+\contentsline {subsection}{\numberline {2.2}Recommender System}{3}
+\contentsline {section}{\numberline {3}Data Handling}{4}
+\contentsline {subsection}{\numberline {3.1}Available Data}{4}
+\contentsline {subsection}{\numberline {3.2}Features}{5}
+\contentsline {subsection}{\numberline {3.3}Data Storing}{6}
+\contentsline {section}{\numberline {4}Setup}{6}
+\contentsline {subsection}{\numberline {4.1}Input and Output}{6}
+\contentsline {subsection}{\numberline {4.2}Metrics}{6}
+\contentsline {section}{\numberline {5}Exploration}{7}
+\contentsline {subsection}{\numberline {5.1}Jaccard Similarity}{7}
+\contentsline {subsection}{\numberline {5.2}Jensen-Shannon Divergence}{7}
+\contentsline {subsection}{\numberline {5.3}KNN}{7}
+\contentsline {subsection}{\numberline {5.4}NMF}{7}
+\contentsline {subsection}{\numberline {5.5}Co-Clustering}{7}
+\contentsline {section}{\numberline {6}Pipeline}{8}
+\contentsline {subsection}{\numberline {6.1}Collaborative Denoising Auto-Encoder}{8}
+\contentsline {subsection}{\numberline {6.2}Recommendations}{9}
+\contentsline {subsection}{\numberline {6.3}Results}{9}
+\contentsline {section}{\numberline {7}Future Work}{11}
+\contentsline {section}{\numberline {8}Conclusion}{11}
+\contentsline {section}{\numberline {9}Credits}{12}
