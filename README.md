@@ -1,7 +1,7 @@
 # EPFL Courses recommendation system
 
 ## Install
-  To install the dependencies, download the data and train the models, set up the EPFL VPN, install python3.6 and run:
+  To install the dependencies, download the data and train the models: set up the EPFL VPN, put the grades correlation file in the data folder, install python3.6 and run:
   ```shell
   pip3.6 install -r requirements.txt
   python3.6 src/init.py
