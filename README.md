@@ -9,7 +9,7 @@
 
 ## Use
   To recommend a list of courses for a user, run `recommend_course.predict(unit, courses)`, unit being the unit the student is in, and courses being the list of courses he already took in masters.
-  
+
   For a graphical usage, run flask on the application.py file: `FLASK_APP=application.py flask run`.
 
 ## Research
